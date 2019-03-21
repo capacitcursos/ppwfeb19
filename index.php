@@ -1,81 +1,16 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-
-    <title>Web Servicios</title>
+    <?php include 'includes/head.php'; ?>
+    <title>Inicio - Capacit - Cursos & Capacitaciones IT</title>
   </head>
   
   <body>
-
+     <!-- INICIO DEL HEADER -->
+     <?php include 'includes/header.php'; ?>
+     <!-- /.FIN DEL HEADER -->
     <main>
-      <div class="container-fluid" style="padding: 0" id="menu-principal">
-  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-  <div class="container">
-  <!--LOGO -->
-  <a class="navbar-brand" href="#">Logo</a>
-  
-  <!--BOTON DE MENU RESPONSIVE -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <!-- ENLACES DE MENU -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
-    <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Inicio </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="empresa.html">Empresa</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="servicios.html">Servicios</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="contacto.html">Contacto</a>
-      </li>
-      
-      <!--   menu desplegable -->
-
-      <!--
-      <li class="nav-item dropdown">        
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Desplegable
-        </a>
-
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Sub menu 1</a>
-          <a class="dropdown-item" href="#">Sub menu 2</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sub menu 3</a>
-        </div>
-      </li>
-
-       -->
-      
-    </ul>
-    
-  </div>
-  </div>
-</nav>
-      </div>
+        
        
        <div class="container-fluid banner">
         <div class="container">
@@ -107,7 +42,7 @@
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
 
-            <a href="#" class="btn btn-success">Detalles</a>       
+            <a href="detalle.php" class="btn btn-success">Detalles</a>       
          </div>
 
 
@@ -122,7 +57,7 @@
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
 
-            <a href="#" class="btn btn-success">Detalles</a>       
+            <a href="detalle.php" class="btn btn-success">Detalles</a>       
          </div> 
 
 
@@ -137,7 +72,7 @@
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
 
-            <a href="#" class="btn btn-success">Detalles</a>       
+            <a href="detalle.php" class="btn btn-success">Detalles</a>       
          </div>             
           </div>          
         </div>               
@@ -220,18 +155,15 @@
 
     </main>
 
-    <footer>
-      <div class="container-fluid text-center">
-        <p>Desarrollado por <a href="">Empresa</a>. Todos los derechos reservados</p>
-      </div>      
-    </footer>
-    
-    
+    <!-- INICIO DEL FOOTER -->
+    <?php include 'includes/footer.php'; ?>
+    <!-- /.FIN DEL FOOTER --> 
 
-    <!--Librerias y codigos JavaScript -->    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- INICIO De SCRIPT -->
+    <?php include 'includes/script.php'; ?>
+    <!-- /.FIN DE SCRIPT --> 
     
-    <script src="js/bootstrap.min.js"></script>
+    
   </body>
 
 
