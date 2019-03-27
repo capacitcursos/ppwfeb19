@@ -2,12 +2,13 @@
 <html lang="es">
   <head>
     <?php include 'includes/head.php'; ?>
-    <title>Empresa - Cursos & Capacitaciones IT</title>
+    <title>Empresa Capacit- Cursos & Capacitaciones IT</title>
   </head>
   
   <body>
-     <!-- INICIO DEL HEADER -->
+     <!-- INICIO DEL HEADER-->
      <?php include 'includes/header.php'; ?>
+     
      <!-- /.FIN DEL HEADER -->
     <main>
 
