@@ -20,6 +20,9 @@
 		<li>
 			<a href="condicionales.php">Condicionales </a>
 		</li>
+		<li>
+			<a href="array.php">Array </a>
+		</li>
 
 	</ul>
 

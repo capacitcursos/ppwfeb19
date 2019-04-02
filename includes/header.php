@@ -5,7 +5,7 @@
             
             <div class="container">
             <!--LOGO -->
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="index.html"><img src="imagenes/logo.png" style="max-height:  100px"></a>
             
             <!--BOTON DE MENU RESPONSIVE -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
             </button>
             
             <!-- ENLACES DE MENU -->
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="collapse navbar-collapse    " id="navbarSupportedContent">
               
               <ul class="navbar-nav ">
                 
