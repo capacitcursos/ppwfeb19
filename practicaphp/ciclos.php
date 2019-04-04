@@ -17,6 +17,29 @@
     	$x++;
     }
 
+   echo "Ciclo do While <br/>";
+   $x = 1;
+    do {
+        echo "el numero es: ".$x."<br/>";
+        $x++;
+    } while ($x <= 10);
+
+
+    //CICLO FOR
+    echo "<h2>CICLO FOR</h2>";
+
+    for ($i=0; $i < 10; $i++) { 
+        echo "el numero es: ".$i."<br/>";
+    }
+
+    //FOREACH
+    echo "<h2>FOREACH</h2>";
+    $personas = array('Juan', 'Luis', 'Maria', 'Jose', 'Bernardo','Julio');
+
+    foreach ($personas as $fila) {
+        echo "El nombre de la persona es: ".$fila."<br>" ;
+    }
+
  ?>
 
 </body>

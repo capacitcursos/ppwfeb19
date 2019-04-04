@@ -23,6 +23,12 @@
 		<li>
 			<a href="array.php">Array </a>
 		</li>
+		<li>
+			<a href="ciclos.php">Ciclos </a>
+		</li>
+		<li>
+			<a href="sesiones.php">Sesiones </a>
+		</li>
 
 	</ul>
 
