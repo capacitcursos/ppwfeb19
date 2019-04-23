@@ -1,3 +1,47 @@
+<?php 
+  // print_r($_POST); 
+  var_dump($_POST);
+  session_start();
+  require('../conexion/conexion.php');
+
+  if (isset($_POST['Enviar'])) {
+      
+      if($_POST['email'] != '' && $_POST['password'] != ''){
+
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+
+        $sql = "SELECT * FROM usuarios WHERE email = '$email' AND password = '$password'";
+         $query = $connection->prepare($sql);
+         $query->execute();
+         
+         //si devuelve mas de 0 filas
+         if ($query->rowCount() > 0) {
+          //almacenamos todas las filas en la variable usuario
+           $usuarios = $query->fetchAll();
+           
+           //recorremos la variable usuarios
+           foreach ($usuarios as $fila) {
+             //almacenamos los datos del usuario en variables de session
+             $_SESSION['logueado'] = 'logueado';
+
+             $_SESSION['usuario_id'] = $fila['id'];
+             $_SESSION['usuario'] = $fila['nombre'];
+             $_SESSION['avatar'] = $fila['avatar'];
+             //redireccionamos a la pagina principal
+             header('Location: index.php');
+           }
+         } else{
+            $mensaje = '<p class="alert alert-danger">Los Datos son incorrectos! :( </p>';
+         }
+
+        //echo("Email: ".$_POST['email']);
+        //echo("Password: ".$_POST['password']);
+
+
+      }
+  }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +66,15 @@
 
 <div class="login-box">
   <div class="login-logo">
+    <?php if(isset($mensaje)) { 
+            
+            if($mensaje != '') { 
+               echo $mensaje;
+               $mensaje = ''; 
+              }
+
+      } ?> 
+
     <a href="index.php"><b>Admin</b>Capacit</a>
   </div>
   <!-- /.login-logo -->
@@ -30,13 +83,14 @@
       <p class="login-box-msg">Complete tus datos para iniciar sesión</p>
 
       <form action="" method="post">
-        <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email">
+        
+        <div class="form-group">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
           <span class="fa fa-envelope form-control-feedback"></span>
         </div>
 
-        <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password">
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
 
@@ -44,7 +98,7 @@
           
           <!-- /.col -->
           <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar Sesión</button>
+            <input type="submit" class="btn btn-primary btn-block btn-flat" name="Enviar" value="Iniciar Sesion">
           </div>
           <!-- /.col -->
         </div>

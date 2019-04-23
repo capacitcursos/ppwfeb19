@@ -29,6 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
 </head>
 
 
@@ -72,19 +73,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-lg-12">
             
             <div class="card">
+              
               <div class="card-header">
                 <h5 class="m-0">Registros</h5>
+
+                <a  class="btn btn-success" href="usuarios-add.php"> Agregar Usuario</a>
               </div>
+              
               <div class="card-body">                
                 <!-- CONTENIDO -->
-                <?php 
-                //recorrer variable result e imprimir datos
-                  foreach ($result as $fila) {
-                    echo $fila['nombre']."<br>";
-                    echo $fila['email']."<br>";
-                    echo $fila['password']."<br>";
-                  } 
 
+                <!-- Inicio de Tabla de Datos en HTML -->
+                <table class="table table-bordered table-striped">
+                  
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Email</th>
+                      <th>Acciones</th>
+                    </tr>
+                    
+                  </thead>
+
+                  <tbody>
+                    <?php   
+                    foreach ($result as $fila) {  ?>                
+                    
+                    <tr>
+                      <td><?php  echo $fila['id'] ?></td>
+                      <td><?php  echo $fila['nombre'] ?></td>
+                      <td><?php  echo $fila['email'] ?></td>
+                      <td>
+                        <a href="usuarios-delet.php" class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar </a>
+
+                         <a href="usuarios-update.php" class="btn btn-warning "><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</a>
+                      </td>
+                    </tr>
+
+                    <?php }  ?>
+
+                  </tbody>
+
+                </table>
+                <!-- //Fin de Tabla de Datos en HTML -->              
+
+                  
                 ?>
               </div>
             </div>

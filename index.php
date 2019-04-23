@@ -1,3 +1,17 @@
+<?php 
+$test="df";
+
+if (($test)) {
+  echo("no esta vacio");
+}
+if (isset($test)) {
+  echo("La variable test esta definida");
+}
+if (!empty($test)) {
+   echo("no esta vacio");
+}
+
+ ?>
 <!doctype html>
 <html lang="es">
   <head>
