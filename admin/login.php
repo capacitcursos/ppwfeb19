@@ -1,6 +1,6 @@
 <?php 
   // print_r($_POST); 
-  var_dump($_POST);
+  //var_dump($_POST);
   session_start();
   
   require('../conexion/conexion.php');

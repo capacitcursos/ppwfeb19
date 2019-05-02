@@ -1,56 +1,28 @@
 <?php 
 session_start();
+
 if(!isset($_SESSION['logueado']) ){
  header('Location: login.php');
 } 
 
 require '../conexion/conexion.php';
+
+
 if (isset($_GET['id'])) {
    $id = $_GET['id'];
 }
 
+
 $sql = "SELECT * FROM usuarios WHERE id ='$id'";
 $query = $connection->prepare($sql);
 $query->execute();
+$result = $query->fetch();
 
-$result= $query->fetch();
-
-//print_r($result);
-
+echo($result['nombre']);
 
 
 
 
-
-if (isset($_POST['enviar'])) {    	
-      	      	      		
-      		//definimos la variable sql para insertar los datos
-      		$sql ="INSERT INTO usuarios(nombre, email, password, avatar, activo, fecha_add) VALUES (:nombre, :email, :password, :avatar, :activo, NOW())";
-
-      		//DEFINIMOS una variable $data con los valores para la consulta sql
-      		$data = array(
-      			'nombre' => $_POST['nombre'],
-      			'email' => $_POST['email'],
-      			'password' => md5($_POST['password']),
-      			'avatar' => $_POST['avatar'],
-      			'activo' => $_POST['activo']
-
-      		); 
-      	     
-      	     //PREPARAMOS la conexion
-      		 $query = $connection->prepare($sql);
-      		 if ($query->execute($data)) {
-      		      	
-      		      	$mensaje = '<p class="alert alert-success">Registro guardado correctamente :)</p>';
-
-      		  		} else {
-      		  	     
-      		  	    $mensaje = '<p class="alert alert-danger">Ocurrio un error al guardar</p>';
-      		  }     
-
-      
-      
-      }
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +53,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
    <?php 
       include 'includes/nav.php';
-      include 'includes/aside.php';  
+      include 'includes/aside.php';         
+        
+        if ($_POST['enviar'] != '') {
+          
+            //definimos la variable sql para insertar los datos
+            
+            $sql ="UPDATE usuarios SET 
+              nombre =:nombre, 
+              email = :email,
+              password = :password, 
+              avatar = :avatar, 
+              activo = :activo,
+              fecha_upd=NOW() 
+              
+            WHERE id=:id";
+
+            //DEFINIMOS una variable $data con los valores para la consulta sql
+            $data = array(
+              'id' => $id,
+              'nombre' => $_POST['nombre'],
+              'email' => $_POST['email'],
+              'password' => $_POST['password'],
+              'avatar' => $_POST['avatar'],
+              'activo' => $_POST['activo']
+
+          ); 
+             
+             //PREPARAMOS la conexion
+             $query = $connection->prepare($sql);
+
+                if ($query->execute($data)) {
+                  
+                  $mensaje = '<p class="alert alert-success">Registro guardado correctamente :)</p>';
+                  } else {                   
+                  
+                  $mensaje = '<p class="alert alert-danger">Ocurrio un error al guardar</p>';
+                }     
+
+            }
+      
+   
 
 
     ?>  
@@ -121,43 +133,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h5 class="m-0">Formulario de Registro</h5>
               </div>
               <div class="card-body">
-              	<?php
-              	if (isset($mensaje)) {
-              		echo $mensaje;
-              	}
-              	
-              	?>
+                <?php 
+                if (isset($mensaje)): ?>
+                   <?php echo $mensaje ?>
+                   <?php endif ?>
                 
                 <!-- CONTENIDO -->
-                <form action="" method="POST" class="form-control">                	
-                	<!-- campo nombre -->
-                	<label>Nombre del Usuario</label>
-                	<input type="text" name="nombre" value="<?php echo $result['nombre']; ?>" class="form-control" required>
+                <form action="" method="POST" class="form-control">                 
+                  <!-- campo nombre -->
+                  <label>Nombre del Usuario</label>
+                  <input type="text" name="nombre" value="<?php echo $result['nombre']?>" class="form-control" required>
 
-                	<!-- campo email -->
-                	<label>Email</label>
-                	<input type="email" name="email" value="<?php echo $result['email']; ?>" class="form-control" required>
+                  <!-- campo email -->
+                  <label>Email</label>
+                  <input type="email" name="email" class="form-control" required>
 
-                	<!-- campo Contraseña -->
-                	<label>Contraseña</label>
-                	<input type="password" name="password" value="<?php echo $result['password']; ?>" class="form-control" required>
+                  <!-- campo Contraseña -->
+                  <label>Contraseña</label>
+                  <input type="password" name="password" class="form-control" required>
 
-                	<!-- campo Avatar -->
-                	<label>Avatar</label>
-                	<input type="text" name="avatar" value="<?php echo $result['avatar']; ?>"class="form-control" required>
+                  <!-- campo Avatar -->
+                  <label>Avatar</label>
+                  <input type="text" name="avatar" class="form-control" required>
 
-                	<!-- campo Activo -->
-                	<label>Activo</label>
+                  <!-- campo Activo -->
+                  <label>Activo</label>
+                  <select class="form-control" name="activo">
+                    <option value="1">SI</option>
+                    <option value="0">NO</option>                   
+                  </select>
+
+                  <br><!-- Boton de Envio -->
+                  <input type="submit" name="enviar" value="Guardar Registro" class="btn btn-success">
                   
-                	<select class="form-control" name="activo">
-                		<option value="1" <?php if ($result['activo'] == 1) {echo 'selected';} ?> >SI</option>
-                		<option value="0" <?php if ($result['activo'] == 0) {echo 'selected';} ?>>NO</option>  
-                            		
-                	</select>
-
-                	<br><!-- Boton de Envio -->
-                	<input type="submit" name="enviar" value="Guardar Registro" class="btn btn-success">
-                	
                 </form>
 
 

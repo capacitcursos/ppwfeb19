@@ -5,6 +5,36 @@ if(!isset($_SESSION['logueado']) ){
 } 
 
 require '../conexion/conexion.php';
+
+if (isset($_POST['enviar'])) {    	
+      	      	      		
+      		//definimos la variable sql para insertar los datos
+      		$sql ="INSERT INTO usuarios(nombre, email, password, avatar, activo, fecha_add) VALUES (:nombre, :email, :password, :avatar, :activo, NOW())";
+
+      		//DEFINIMOS una variable $data con los valores para la consulta sql
+      		$data = array(
+      			'nombre' => $_POST['nombre'],
+      			'email' => $_POST['email'],
+      			'password' => md5($_POST['password']),
+      			'avatar' => $_POST['avatar'],
+      			'activo' => $_POST['activo']
+
+      		); 
+      	     
+      	     //PREPARAMOS la conexion
+      		 $query = $connection->prepare($sql);
+      		 if ($query->execute($data)) {
+      		      	
+      		      	$mensaje = '<p class="alert alert-success">Registro guardado correctamente :)</p>';
+
+      		  		} else {
+      		  	     
+      		  	    $mensaje = '<p class="alert alert-danger">Ocurrio un error al guardar</p>';
+      		  }     
+
+      
+      
+      }
 ?>
 
 <!DOCTYPE html>
@@ -35,40 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
    <?php 
       include 'includes/nav.php';
-      include 'includes/aside.php';
-
-      if (isset($_POST)) {
-      	
-      	
-      	if ($_POST['nombre'] != '' && $_POST['password'] != '') {
-      		
-      		//definimos la variable sql para insertar los datos
-      		$sql ="INSERT INTO usuarios(nombre, email, password, avatar, activo, fecha_add) VALUES (:nombre, :email, :password, :avatar, :activo, NOW())";
-
-      		//DEFINIMOS una variable $data con los valores para la consulta sql
-      		$data = array(
-      			'nombre' => $_POST['nombre'],
-      			'email' => $_POST['email'],
-      			'password' => $_POST['password'],
-      			'avatar' => $_POST['avatar'],
-      			'activo' => $_POST['activo']
-
-      		); 
-      	     
-      	     //PREPARAMOS la conexion
-      		 $query = $connection->prepare($sql);
-      		 if ($query->execute($data)) {
-      		      	
-      		      	$mensaje = '<p class="alert alert-success">Registro guardado correctamente :)</p>';
-
-      		  		} else {
-      		  	     
-      		  	    $mensaje = '<p class="alert alert-danger">Ocurrio un error al guardar</p>';
-      		  }     
-
-      	}
-      
-      }
+      include 'includes/aside.php';  
 
 
     ?>  
@@ -108,9 +105,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h5 class="m-0">Formulario de Registro</h5>
               </div>
               <div class="card-body">
-              	<?php if (isset($mensaje)): ?>
-              		<?php echo $mensaje ?>
-              	<?php endif ?>
+              	<?php
+              	if (isset($mensaje)) {
+              		echo $mensaje;
+              	}
+              	
+              	?>
                 
                 <!-- CONTENIDO -->
                 <form action="" method="POST" class="form-control">                	

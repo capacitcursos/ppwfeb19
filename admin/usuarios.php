@@ -105,9 +105,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td><?php  echo $fila['nombre'] ?></td>
                       <td><?php  echo $fila['email'] ?></td>
                       <td>
-                        <a href="usuarios-delet.php" class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar </a>
+                        <a href="ejemplo-delet.php?id=<?php echo $fila['id'] ?>" class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar </a>
 
-                         <a href="usuarios-update.php" class="btn btn-warning "><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</a>
+                        <a href="usuarios-update.php?id=<?php  echo $fila['id'] ?>" class="btn btn-warning "><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</a>
                       </td>
                     </tr>
 
@@ -119,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- //Fin de Tabla de Datos en HTML -->              
 
                   
-                ?>
+              
               </div>
             </div>
 
